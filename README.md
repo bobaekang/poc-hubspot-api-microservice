@@ -19,22 +19,6 @@ A simple proof-of-concept Flask app to serve as an intermediary between the PCDC
 
 ## Endpoints
 
-### `GET /list-companies`
-
-To get the unique names in your HubSpot `Companies` list. Names that resemble email domain are excluded.
-
-Returns something like:
-
-```json
-{
-  "companies": [
-    "Amazon.com, Inc.",
-    "Bank of America Corporation",
-    "Coca-Cola Co."
-  ]
-}
-```
-
 ### `POST /is-user-registered`
 
 To check if the user with the given email already exists in the HubSpot contact list.
