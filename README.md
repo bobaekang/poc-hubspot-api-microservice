@@ -61,3 +61,25 @@ Returns something like:
   "success": true
 }
 ```
+
+### `POST /get-user`
+
+To get an existing user's information from HubSpot contacts.
+
+Expects the following payload:
+
+```json
+{
+  "email": "jane.doe@gmail.com"
+}
+```
+
+Returns something like:
+
+```json
+{
+  "firstname": "Jane",
+  "institution": "The University of Chicago",
+  "lastname": "Doe"
+}
+```

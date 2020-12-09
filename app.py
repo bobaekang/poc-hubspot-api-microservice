@@ -60,3 +60,25 @@ def subscribe_user():
     r = request_hubspot(data=data, path="/contacts")
     success = r.status_code == requests.codes.created
     return flask.jsonify({"success": success})
+
+
+@app.route("/get-user", methods=["POST"])
+def get_user():
+    args = flask.request.get_json()
+    data = {
+        "filterGroups": [{
+            "filters": [{
+                "value": args.get("email"),
+                "propertyName": "email",
+                "operator": "EQ"
+            }]
+        }],
+        "properties": ["firstname", "lastname", "institution"]
+    }
+    r = request_hubspot(data=data, path="/contacts/search")
+    user_properties = r.json().get("results")[0].get("properties")
+    return flask.jsonify({"user": {
+        "firstname": user_properties.get("firstname"),
+        "lastname": user_properties.get("lastname"),
+        "institution": user_properties.get("institution"),
+    }})
