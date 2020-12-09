@@ -47,9 +47,9 @@ Expects the following payload:
 
 ```json
 {
-  "company": "The University of Chicago",
   "email": "jane.doe@email.com",
   "firstname": "Jane",
+  "institution": "The University of Chicago",
   "lastname": "Doe"
 }
 ```
