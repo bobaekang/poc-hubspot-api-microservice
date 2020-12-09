@@ -84,10 +84,10 @@ def subscribe_user():
     args = flask.request.get_json()
     data = {
         "properties": {
-            "email": args.get("email", ""),
-            "firstname": args.get("firstname", ""),
-            "institution": args.get("institution", ""),
-            "lastname": args.get("lastname", ""),
+            "email": args.get("email"),
+            "firstname": args.get("firstname"),
+            "institution": args.get("institution"),
+            "lastname": args.get("lastname"),
         }
     }
     r = request_hubspot(data=data, path="/contacts")
