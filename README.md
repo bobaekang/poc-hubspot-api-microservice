@@ -27,7 +27,7 @@ Expects the following payload:
 
 ```json
 {
-  "email": "user@email.com"
+  "email": "jane.doe@uchicago.edu"
 }
 ```
 
@@ -47,7 +47,7 @@ Expects the following payload:
 
 ```json
 {
-  "email": "jane.doe@email.com",
+  "email": "jane.doe@uchicago.edu",
   "firstname": "Jane",
   "institution": "The University of Chicago",
   "lastname": "Doe"
@@ -70,7 +70,7 @@ Expects the following payload:
 
 ```json
 {
-  "email": "jane.doe@gmail.com"
+  "email": "jane.doe@uchicago.edu"
 }
 ```
 
@@ -94,7 +94,7 @@ Expects the following payload:
 
 ```json
 {
-  "email": "jane.doe@email.com",
+  "email": "jane.doe@uchicago.edu",
   "firstname": "Jane",
   "institution": "The University of Chicago Medical Center",
   "lastname": "Doe"
