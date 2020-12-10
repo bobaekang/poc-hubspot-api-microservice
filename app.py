@@ -82,3 +82,32 @@ def get_user():
         "lastname": user_properties.get("lastname"),
         "institution": user_properties.get("institution"),
     }})
+
+
+@app.route("/update-user", methods={"POST"})
+def update_user():
+    args = flask.request.get_json()
+    data_get = {
+        "filterGroups": [{
+            "filters": [{
+                "value": args.get("email"),
+                "propertyName": "email",
+                "operator": "EQ"
+            }]
+        }],
+        "properties": [""]
+    }
+    r_get = request_hubspot(data=data_get, path="/contacts/search")
+    user_id = r_get.json().get("results")[0].get("id")
+
+    data_update = {
+        "properties": {
+            "firstname": args.get("firstname"),
+            "institution": args.get("institution"),
+            "lastname": args.get("lastname"),
+        }
+    }
+    r_update = request_hubspot(
+        data=data_update, method="PATCH", path=f"/contacts/{user_id}")
+    success = r_update.status_code == requests.codes.ok
+    return flask.jsonify({"success": success})

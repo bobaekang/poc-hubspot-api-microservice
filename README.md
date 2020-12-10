@@ -83,3 +83,28 @@ Returns something like:
   "lastname": "Doe"
 }
 ```
+
+### `POST /update-user`
+
+To update an existing user's information on HubSpot contacts.
+
+`email` value is not modifiable and is only used to find the user. Updtabale proeprties include `firstname`, `lastname`, and `institution`. Information is not updated if the value is `null` or missing in the payload.
+
+Expects the following payload:
+
+```json
+{
+  "email": "jane.doe@email.com",
+  "firstname": "Jane",
+  "institution": "The University of Chicago Medical Center",
+  "lastname": "Doe"
+}
+```
+
+Returns something like:
+
+```json
+{
+  "success": true
+}
+```
