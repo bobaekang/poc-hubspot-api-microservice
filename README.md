@@ -125,7 +125,6 @@ Returns something like:
 
 ```json
 {
-  "domain": "uchicago.edu",
   "name": "The University of Chicago"
 }
 ```

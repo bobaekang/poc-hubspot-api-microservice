@@ -133,15 +133,10 @@ def get_associated_company():
         method="GET", path=f"/contacts/{user_id}/associations/companies")
     company_id_results = r_company_id.json().get("results")
     if len(company_id_results) == 0:
-        company_info = None
+        return flask.jsonify(None)
     else:
         company_id = company_id_results[0].get("id")
         r_company = request_hubspot(
             method="GET", path=f"/companies/{company_id}")
         company_properties = r_company.json().get("properties")
-        company_info = {
-            "name": company_properties.get("name"),
-            "domain": company_properties.get("domain")
-        }
-
-    return flask.jsonify(company_info)
+        return flask.jsonify({"name": company_properties.get("name")})
