@@ -111,3 +111,32 @@ def update_user():
         data=data_update, method="PATCH", path=f"/contacts/{user_id}")
     success = r_update.status_code == requests.codes.ok
     return flask.jsonify({"success": success})
+
+
+@app.route("/get-associated-company", methods={"POST"})
+def get_associated_company():
+    args = flask.request.get_json()
+    data_user_id = {
+        "filterGroups": [{
+            "filters": [{
+                "value": args.get("email"),
+                "propertyName": "email",
+                "operator": "EQ"
+            }]
+        }],
+        "properties": [""]
+    }
+    r_user_id = request_hubspot(data=data_user_id, path="/contacts/search")
+    user_id = r_user_id.json().get("results")[0].get("id")
+
+    r_company_id = request_hubspot(
+        method="GET", path=f"/contacts/{user_id}/associations/companies")
+    company_id_results = r_company_id.json().get("results")
+    if len(company_id_results) == 0:
+        return flask.jsonify(None)
+    else:
+        company_id = company_id_results[0].get("id")
+        r_company = request_hubspot(
+            method="GET", path=f"/companies/{company_id}")
+        company_properties = r_company.json().get("properties")
+        return flask.jsonify({"name": company_properties.get("name")})

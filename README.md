@@ -108,3 +108,25 @@ Returns something like:
   "success": true
 }
 ```
+
+### `POST /get-associated-company`
+
+To get information on an existing user's associated company.
+
+Expects the following payload:
+
+```json
+{
+  "email": "jane.doe@uchicago.edu"
+}
+```
+
+Returns something like:
+
+```json
+{
+  "name": "The University of Chicago"
+}
+```
+
+Retuns `null` if the user has no associated company.
